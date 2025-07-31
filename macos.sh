@@ -8,8 +8,8 @@ alias dw='sudo defaults write'
 
 killall 'System Settings' 2>/dev/null
 
+# computer name ################################################################
 
-# computer name
 readonly computer_name=CMC-MBP
 for name in ComputerName HostName LocalHostName; do
     sudo scutil --set "$name" "$computer_name"
@@ -17,8 +17,8 @@ done
 dw /Library/Preferences/SystemConfiguration/com.apple.smb.server\
     NetBIOSName -string "$computer_name"
 
+# Dock #########################################################################
 
-# dock
 alias dock='dw com.apple.dock'
 dock autohide -bool true
 dock autohide-immutable -bool true
@@ -58,8 +58,8 @@ dock windowtabbing-immutable -bool true
 dock enable-spring-load-actions-on-all-items -bool true
 dock showhidden -bool true
 
+# Finder #######################################################################
 
-# finder
 alias finder='dw com.apple.finder'
 dw -g AppleShowAllExtensions -bool true
 dw -g com.apple.springing.delay -float 1
@@ -77,8 +77,8 @@ finder ShowPathbar -bool true
 finder _FXSortFoldersFirstOnDesktop -bool true
 finder ShowSidebar -bool true
 
+# Screencapture ################################################################
 
-# screenshots
 alias screencapture='dw com.apple.screencapture'
 screencapture disable-shadow -bool true
 screencapture show-thumbnail -bool false
@@ -87,19 +87,19 @@ dir=~/MyFiles/Pictures/Screenshots/.tmp
 mkdir "$dir" 2>/dev/null
 screencapture location -string "$dir"
 
+# globals ######################################################################
 
-# globals
 dw com.apple.SoftwareUpdate ScheduleFrequency -int 1
 # nvram good-samaritan-message="Aren't you a little nosy, hm?"
 
+# typing #######################################################################
 
-# typing
 dw -g NSAutomaticCapitalizationEnabled -bool false
 dw -g NSAutomaticPreiodSubstitutionEndabled -bool false
 dw -g NSAutomaticSpellingCorrectionEnabled -bool false
 
+# mouse ########################################################################
 
-# mouse
 dw -g com.apple.mouse.scaling -float 0.125
 dw com.apple.Terminal FocusFollowsMouse -bool true
 
