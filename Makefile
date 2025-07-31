@@ -84,8 +84,14 @@ vscode: vscode/settings.json vscode/tasks.json
 
 
 zsh: zsh/.zprofile zsh/.zshenv zsh/.zshrc zsh/spaceship.zsh
+	for src in $^; do zsh -c "zcompile $$src"; done
+
 	cd ./$@;\
-	$(symlink) .zshenv       ~;\
-	$(symlink) .zprofile     $(LOCAL_CONFIG_DIR)/zsh;\
-	$(symlink) .zshrc        $(LOCAL_CONFIG_DIR)/zsh;\
-	$(symlink) spaceship.zsh $(LOCAL_CONFIG_DIR)
+	$(symlink) .zshenv           ~;\
+	$(symlink) .zshenv.zwc       ~;\
+	$(symlink) .zprofile         $(LOCAL_CONFIG_DIR)/zsh;\
+	$(symlink) .zprofile.zwc     $(LOCAL_CONFIG_DIR)/zsh;\
+	$(symlink) .zshrc            $(LOCAL_CONFIG_DIR)/zsh;\
+	$(symlink) .zshrc.zwc        $(LOCAL_CONFIG_DIR)/zsh;\
+	$(symlink) spaceship.zsh     $(LOCAL_CONFIG_DIR)
+	$(symlink) spaceship.zsh.zwc $(LOCAL_CONFIG_DIR)
