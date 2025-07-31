@@ -1,4 +1,5 @@
 [alias]
+	amend = commit --amend --no-edit
 	glog = log --graph
 	last = log -1 HEAD
 [core]
