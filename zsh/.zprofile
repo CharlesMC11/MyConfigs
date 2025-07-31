@@ -1,7 +1,7 @@
 export EDITOR=vim
 export VISUAL=code
 
-export -UT PYTHONPATH pythonpath
+export -TU PYTHONPATH pythonpath
 
 # named directories ############################################################
 
@@ -9,7 +9,7 @@ MyFiles=~/MyFiles
 if [[ -d ~MyFiles ]]; then
     hash -d MyFiles
 
-    declare -aU directories
+    declare -Ua directories
     directories=(3D Configs Documents Pictures Programming Wiki Work)
     for dir in ${==directories}; do
         hash -d My${dir}=~MyFiles/${dir}
@@ -41,7 +41,7 @@ fi
 
 eval $(/opt/homebrew/bin/brew shellenv)
 
-declare -aU path
+declare -Ua path
 
 # personal executables
 BINS=~/.local/bin
