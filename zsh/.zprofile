@@ -1,4 +1,4 @@
-export EDITOR=vim
+export EDITOR=code
 export VISUAL=code
 
 export -TU PYTHONPATH pythonpath
