@@ -46,7 +46,7 @@ rm_ds_store () {
          cd "$1"
         shift
     fi
-    rm ./**/.DS_Store
+    rm **/.DS_Store
 }
 
 brew_update () {
