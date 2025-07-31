@@ -1,13 +1,12 @@
-#!/usr/bin/env zsh -f
+#!/usr/bin/env sh
 
 sudo -v || exit 1
+
+alias dw='sudo defaults write'
 
 ################################################################################
 
 killall 'System Settings' 2>/dev/null
-
-
-alias -g dw='defaults write'
 
 
 # computer name
@@ -15,7 +14,7 @@ readonly computer_name=CMC-MBP
 for name in ComputerName HostName LocalHostName; do
     sudo scutil --set "$name" "$computer_name"
 done
-sudo dw /Library/Preferences/SystemConfiguration/com.apple.smb.server\
+dw /Library/Preferences/SystemConfiguration/com.apple.smb.server\
     NetBIOSName -string "$computer_name"
 
 
