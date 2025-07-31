@@ -1,0 +1,163 @@
+{
+  "accessibility.signals.terminalBell": {
+    "sound": "on"
+  },
+  "debug.showInStatusBar": "always",
+  "debug.showSubSessionsInToolBar": true,
+  "debug.terminal.clearBeforeReusing": true,
+  "debug.toolBarLocation": "docked",
+  "editor.acceptSuggestionOnEnter": "smart",
+  "editor.accessibilitySupport": "off",
+  "editor.autoClosingBrackets": "beforeWhitespace",
+  "editor.bracketPairColorization.independentColorPoolPerBracketType": true,
+  "editor.cursorBlinking": "phase",
+  "editor.cursorSmoothCaretAnimation": "on",
+  "editor.fontFamily": "Monaspace Argon ExtraLight, Monaco, 'Courier New', monospace",
+  "editor.fontLigatures": "'calt', 'ss02', 'ss03', 'ss07', 'ss09', 'liga'",
+  "editor.formatOnPaste": true,
+  "editor.fontSize": 14,
+  "editor.formatOnSave": true,
+  "editor.guides.bracketPairs": true,
+  // "editor.guides.bracketPairsHorizontal": true,
+  // "editor.guides.highlightActiveBracketPair": true,
+  "editor.hover.enabled": true,
+  "editor.lineNumbers": "relative",
+  "editor.minimap.enabled": false,
+  "editor.renderWhitespace": "all",
+  "editor.rulers": [80],
+  "editor.smoothScrolling": true,
+  "editor.stickyScroll.enabled": true,
+  "editor.suggest.localityBonus": true,
+  "editor.suggest.preview": true,
+  "editor.suggest.shareSuggestSelections": true,
+  "editor.wrappingStrategy": "advanced",
+  "explorer.confirmDelete": false,
+  "extensions.ignoreRecommendations": true,
+  "files.associations": {
+    "*.copreset": "xml",
+    "*.gs": "javascript",
+    // "*.lrtemplate": "lua",
+    "*.xmp": "xml",
+    "*.xstage": "xml"
+  },
+  "files.exclude": {
+    "**/*.numbers": true,
+    "**/*.pages": true,
+    "**/*.zwc": {
+      "when": "$(basename)"
+    },
+    "**/__pycache__": true
+  },
+  "files.restoreUndoStack": false,
+  "files.simpleDialog.enable": true,
+  "files.trimFinalNewlines": true,
+  "files.trimTrailingWhitespace": true,
+  "security.workspace.trust.startupPrompt": "always",
+  "terminal.integrated.automationProfile.osx": null,
+  "terminal.integrated.cursorBlinking": true,
+  "terminal.integrated.profiles.osx": {
+    "python": {
+      "args": ["-q"],
+      "color": "terminal.ansiYellow",
+      "path": "python3"
+    },
+    "zsh": {
+      "args": ["-l"],
+      "color": "terminal.ansiYellow",
+      "path": "zsh"
+    }
+  },
+  "terminal.integrated.copyOnSelection": true,
+  "workbench.activityBar.location": "top",
+  "workbench.colorTheme": "Ayu Mirage Bordered",
+  "workbench.commandPalette.experimental.suggestCommands": true,
+  "workbench.editor.decorations.badges": false,
+  // "workbench.editor.openSideBySideDirection": "down",
+  // "workbench.editor.showTabs": "single",
+  "workbench.editor.wrapTabs": true,
+  "workbench.iconTheme": "vscode-icons",
+  "workbench.layoutControl.enabled": false,
+  "workbench.list.smoothScrolling": true,
+  "workbench.startupEditor": "readme",
+  "task.allowAutomaticTasks": "off",
+
+  // Git
+  "diffEditor.codeLens": true,
+  "diffEditor.experimental.showMoves": true,
+  "git.confirmSync": false,
+  "git.path": "git",
+
+  // C, C++
+  "[cpp]": {
+    "editor.defaultFormatter": "ms-vscode.cpptools"
+  },
+  "C_Cpp.clang_format_fallbackStyle": "Google",
+  "C_Cpp.debugShortcut": false,
+  "C_Cpp.default.compileCommands": ["-Wall -Wextra -Wpedantic"],
+  "C_Cpp.default.compilerPath": "/usr/bin/clang++",
+  "C_Cpp.default.cStandard": "c17",
+  "C_Cpp.default.cppStandard": "c++23",
+  "C_Cpp.default.includePath": ["${workspaceFolder}"],
+  "C_Cpp.default.macFrameworkPath": [
+    "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks"
+  ],
+
+  // HTML
+  "[html]": {
+    "editor.defaultFormatter": "vscode.html-language-features"
+  },
+
+  // Javascript, Shell
+  "[javascript][shellsctipt]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.tabSize": 4
+  },
+
+  // JSON
+  "[json]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  "[jsonc]": {
+    "editor.codeActionsOnSave": {
+      "source.fixAll": "always"
+    },
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+
+  // Markdown
+  "[markdown]": {
+    "editor.formatOnSave": true
+    // "editor.defaultFormatter": "sissel.shopify-liquid"
+  },
+
+  // Python
+  "[python]": {
+    "editor.codeActionsOnSave": {
+      "source.fixAll": "always",
+      "source.organizeImports": "always"
+    },
+    "editor.defaultFormatter": "ms-python.black-formatter"
+  },
+  "black-formatter.args": ["--line-length", "80"],
+  "black-formatter.interpreter": ["python3"],
+  "isort.args": ["--profile", "black"],
+  "isort.interpreter": ["python3"],
+  "python.analysis.diagnosticMode": "workspace",
+  "python.analysis.extraPaths": [
+    "/Applications/Autodesk/maya2026/Maya.app/Contents/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages",
+    "/Applications/Autodesk/Arnold/mtoa/2026/scripts"
+  ],
+
+  // SCSS
+  "[scss]": {
+    "editor.defaultFormatter": "vscode.css-language-features"
+  },
+  "vsicons.dontShowNewVersionMessage": true,
+  "python.defaultInterpreterPath": "/opt/homebrew/bin/python3",
+  "workbench.editorAssociations": {
+    "*.db": "default"
+  },
+
+  // CodeTogether
+  "codetogether.userName": "Charles M C"
+}

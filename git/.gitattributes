@@ -1,0 +1,181 @@
+*               text=auto
+
+
+# configs ######################################################################
+*.cfg           text
+*.env           text
+
+.gitattributes  text
+.gitconfig      text
+.gitignore      text
+
+makefile        text
+
+
+# C/C++ ########################################################################
+*.c             text   diff=cpp
+*.cc            text   diff=cpp
+*.cpp           text   diff=cpp
+
+*.h             text   diff=cpp
+*.hh            text   diff=cpp
+*.hpp           text   diff=cpp
+
+
+# JavaScript ###################################################################
+*.js            text
+
+
+# Python #######################################################################
+*.py            text   diff=python
+*.pyi           text   diff=python
+
+# Ren'Py #######################################################################
+*.rpy           text
+*.rpym          text
+
+
+# shell scripts ################################################################
+*.sh            text   diff=bash     eol=lf
+
+*.bash          text   diff=bash     eol=lf
+.bashrc         text   diff=bash     eol=lf
+
+*.zsh           text   diff=bash     eol=lf
+.zprofile       text   diff=bash     eol=lf
+.zshenv         text   diff=bash     eol=lf
+.zshrc          text   diff=bash     eol=lf
+
+*.bat           text   eol=crlf
+*.cmd           text   eol=crlf
+*.ps1           text   eol=crlf
+
+
+# serialization ################################################################
+*.json          text
+*.xml           text
+*.yml           text
+
+
+# web ##########################################################################
+*.html          text   diff=html
+
+*.css           text   diff=css
+*.scss          text   diff=css
+
+
+# archives #####################################################################
+*.7z            binary
+*.aar           binary
+*.tar           binary
+*.txz           binary
+*.xz            binary
+*.zip           binary
+
+
+# documents ####################################################################
+*.md            text   diff=markdown
+*.pdf          -text
+*.rst           text
+*.txt           text
+
+
+# images #######################################################################
+*.exr           binary
+*.gif           binary
+*.heic          binary
+*.jpg           binary
+*.jpeg          binary
+*.png           binary
+*.tif           binary
+*.tiff          binary
+
+*.dcp           binary
+*.icc           binary
+
+
+# 3d assets ####################################################################
+*.mtl           text
+*.obj           text
+
+# Alembic
+*.abc           binary
+# FBX
+*.fbx           binary
+
+# Blender
+*.blend*        binary
+
+
+# audio ########################################################################
+*.mp3           binary
+*.ogg           binary
+*.wav           binary
+
+
+# vidoes #######################################################################
+*.avi           binary
+*.mov           binary
+*.mp4           binary
+
+
+# misc #########################################################################
+*.template     -text
+*.xmp           text
+
+*.dat           binary
+# fonts
+*.ttf           binary
+
+
+# Apple iWork ##################################################################
+*.numbers       binary
+*.pages         binary
+
+
+# Google Suite #################################################################
+*.gs            text
+
+*.gdoc          binary
+*.gsheet        binary
+*.gslides       binary
+
+
+# Adobe Suite ##################################################################
+# Lightroom Classic
+*.lrtemplate    text
+# Brushes
+*.abr           binary
+# Photoshop
+*.psd           binary
+
+
+# Capture One ##################################################################
+*.copreset      text
+
+
+# Clip Studio Paint ############################################################
+*.clip          binary
+*.cmc           binary
+
+
+# Krita ########################################################################
+*.kra           binary
+
+
+# Houdini ######################################################################
+*.geo           text
+*.bgeo          binary
+
+*.hip           binary
+*.hipnc         binary
+
+
+# Maya #########################################################################
+*.mel           text
+
+*.ma            text
+*.mb            binary
+
+*.mcx           binary
+*.mcc           binary
