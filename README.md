@@ -16,3 +16,4 @@ Presets for
 - Adobe Lightroom Classic
 - Adobe Photoshop
 - Capture One
+- ExifTool
