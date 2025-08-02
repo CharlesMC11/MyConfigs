@@ -26,6 +26,14 @@ if [[ -d ~MyFiles ]]; then
     hash -d DeAnza=~MyFiles/'De Anza College'
 
     pythonpath=(~MyProgramming/bin ~MyProgramming ${==pythonpath})
+    for dir in ~MyProgramming/bin/*(/); do
+        declare -Ua files
+        files=($dir/*.py(N))
+        if ((${#files})); then
+            pythonpath=("$dir" ${==pythonpath})
+        fi
+    done
+    unset files
 else
     unset MyFiles
 fi
@@ -41,11 +49,11 @@ fi
 
 eval $(/opt/homebrew/bin/brew shellenv)
 
-declare -Ua path
-
 # personal executables
-BINS=~/.local/bin
 
+export -Ua path
+
+BINS=~/.local/bin
 if [[ ! -d ~BINS ]]; then
     mkdir ~BINS
 fi
