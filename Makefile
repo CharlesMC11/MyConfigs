@@ -1,3 +1,5 @@
+SHELL            := /opt/homebrew/bin/zsh
+
 LIBRARY_DIR      := $(HOME)/Library
 APP_SUPPORT_DIR  := $(LIBRARY_DIR)/Application Support
 
@@ -18,10 +20,10 @@ adobe:
 	for dir_name in CameraRaw Lightroom; do\
 		target_dir="$(APP_SUPPORT_DIR)/Adobe/$${dir_name}";\
 		for src in $${dir_name}/*; do\
-			target="$${target_dir}/$$(basename "$$src")";\
-			if [ ! -h "$$target" ] && [ -d "$$target" ] && [ $$(ls -A "$$target") ]; then\
+			target="$${target_dir}/$${src:t}";\
+			if [[ ! -h "$$target" && -d "$$target" && $$(ls -A "$$target") ]]; then\
 				mv "$$target" "$${target}.bak";\
-				echo "Backed up $$(basename "$$target") because it was not empty" 1>&2;\
+				echo "Backed up "$${target:t}" because it was not empty" 1>&2;\
 			fi;\
  			$(symlink) "$$src" "$$target";\
 		done;\
@@ -30,11 +32,11 @@ adobe:
 
 capture_one:
 	cd ./$@;\
-	for src in Metadata/*.copreset; do\
-		$(hardlink) "$$src" "$(APP_SUPPORT_DIR)/Capture One/Presets60/$$src";\
+	for src in Metadata/*.copreset(N); do\
+		$(hardlink) "$$src" "$(APP_SUPPORT_DIR)/Capture One/Presets60/$${src}";\
 	done;\
-	for src in Profiles/*.icc; do\
-		$(symlink) "$$src" "$(LIBRARY_DIR)/ColorSync/$$src";\
+	for src in Profiles/*.icc(N); do\
+		$(symlink) "$$src" "$(LIBRARY_DIR)/ColorSync/$${src}";\
 	done
 
 
@@ -79,12 +81,12 @@ misc: misc/.bashrc misc/.vimrc
 
 vscode: vscode/settings.json vscode/tasks.json
 	for src in $^; do\
-		$(symlink) $$src "$(APP_SUPPORT_DIR)/Code/User/$$(basename $$src)";\
+		$(symlink) $$src "$(APP_SUPPORT_DIR)/Code/User/$${src:t}";\
 	done
 
 
 zsh: zsh/.zprofile zsh/.zshenv zsh/.zshrc zsh/spaceship.zsh
-	for src in $^; do zsh -c "zcompile $$src"; done
+	for src in $^; do zcompile "$$src"; done
 
 	cd ./$@;\
 	$(symlink) .zshenv           ~;\
