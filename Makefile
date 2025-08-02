@@ -41,9 +41,10 @@ capture_one:
 
 
 exiftool:
-	for file in ./$@/*.args; do\
-		$(symlink) $$file $(LOCAL_CONFIG_DIR)/$@;\
-	done
+	if [[ -e ~/.local/share/$@ && ! -h ~/.local/share/$@ ]]; then\
+		mv ~/.local/share/$@ ~/.local/share/$@~;\
+	fi
+	$(symlink) $@ ~/.local/share/$@
 
 
 git: git/.gitattributes git/.gitconfig git/.gitignore
