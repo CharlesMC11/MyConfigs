@@ -1,4 +1,4 @@
-SHELL            := /opt/homebrew/bin/zsh
+SHELL            := zsh
 
 LIBRARY_DIR      := $(HOME)/Library
 APP_SUPPORT_DIR  := $(LIBRARY_DIR)/Application Support
