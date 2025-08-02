@@ -95,5 +95,5 @@ zsh: zsh/.zprofile zsh/.zshenv zsh/.zshrc zsh/spaceship.zsh
 	$(symlink) .zprofile.zwc     $(LOCAL_CONFIG_DIR)/zsh;\
 	$(symlink) .zshrc            $(LOCAL_CONFIG_DIR)/zsh;\
 	$(symlink) .zshrc.zwc        $(LOCAL_CONFIG_DIR)/zsh;\
-	$(symlink) spaceship.zsh     $(LOCAL_CONFIG_DIR)
+	$(symlink) spaceship.zsh     $(LOCAL_CONFIG_DIR);\
 	$(symlink) spaceship.zsh.zwc $(LOCAL_CONFIG_DIR)
