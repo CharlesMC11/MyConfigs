@@ -1,0 +1,35 @@
+s = {
+	id = "86FD21FB-E805-4733-9209-A255A4890266",
+	internalName = "creator_charlesmc",
+	title = "Creator: Charles M C",
+	type = "Metadata",
+	value = {
+		["com.adobe.copyright"] = "© Charles Mesa Cayobit",
+		["com.adobe.copyrightOwner"] = {
+			{
+				CopyrightOwnerName = "Charles Mesa Cayobit",
+			},
+		},
+		["com.adobe.copyrightState"] = true,
+		["com.adobe.creator"] = "Charles Mesa Cayobit",
+		["com.adobe.creatorCity"] = "San Jose",
+		["com.adobe.creatorCountry"] = "United States",
+		["com.adobe.creatorState"] = "California",
+		["com.adobe.creatorWorkEmail"] = "charlesmesacayobit@gmail.com",
+		["com.adobe.creatorWorkWebsite"] = "charlesmc-tech.art",
+		["com.adobe.imageCreator"] = {
+			{
+				ImageCreatorName = "Charles Mesa Cayobit",
+			},
+		},
+		["com.adobe.imageSupplier"] = {
+			{
+				ImageSupplierName = "Charles Mesa Cayobit",
+			},
+		},
+		["com.adobe.provider"] = "Charles Mesa Cayobit",
+		["com.adobe.source"] = "Charles Mesa Cayobit",
+		uuid = "99C6637F-F512-47C6-85EF-B41601948EB1",
+	},
+	version = 0,
+}
