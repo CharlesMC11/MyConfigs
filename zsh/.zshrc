@@ -24,6 +24,9 @@ setopt HIST_SAVE_NO_DUPS
 setopt HIST_VERIFY
 setopt SHARE_HISTORY
 
+autoload -Uz compinit
+compinit
+
 # aliases ######################################################################
 
 alias -g ...=../..
@@ -51,7 +54,7 @@ rm_ds_store () {
 
 brew_update () {
     local cmd
-    for cmd in update upgrade 'upgrade --cask --greedy' autoremove cleanup; do
+    for cmd in update upgrade 'upgrade --cask' autoremove cleanup; do
         brew ${=cmd}
     done
 }
