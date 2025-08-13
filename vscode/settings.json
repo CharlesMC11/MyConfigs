@@ -24,7 +24,9 @@
   "editor.lineNumbers": "relative",
   "editor.minimap.enabled": false,
   "editor.renderWhitespace": "all",
-  "editor.rulers": [80],
+  "editor.rulers": [
+    80
+  ],
   "editor.smoothScrolling": true,
   "editor.stickyScroll.enabled": true,
   "editor.suggest.localityBonus": true,
@@ -57,12 +59,16 @@
   "terminal.integrated.cursorBlinking": true,
   "terminal.integrated.profiles.osx": {
     "python": {
-      "args": ["-q"],
+      "args": [
+        "-q"
+      ],
       "color": "terminal.ansiYellow",
       "path": "python3"
     },
     "zsh": {
-      "args": ["-l"],
+      "args": [
+        "-l"
+      ],
       "color": "terminal.ansiYellow",
       "path": "zsh"
     }
@@ -80,39 +86,39 @@
   "workbench.list.smoothScrolling": true,
   "workbench.startupEditor": "readme",
   "task.allowAutomaticTasks": "off",
-
+  // CodeTogether
+  "codetogether.userName": "Charles M C",
   // Git
   "diffEditor.codeLens": true,
   "diffEditor.experimental.showMoves": true,
   "git.confirmSync": false,
   "git.path": "git",
-
   // C, C++
   "[cpp]": {
     "editor.defaultFormatter": "ms-vscode.cpptools"
   },
   "C_Cpp.clang_format_fallbackStyle": "Google",
   "C_Cpp.debugShortcut": false,
-  "C_Cpp.default.compileCommands": ["-Wall -Wextra -Wpedantic"],
+  "C_Cpp.default.compileCommands": [
+    "-Wall -Wextra -Wpedantic"
+  ],
   "C_Cpp.default.compilerPath": "/usr/bin/clang++",
   "C_Cpp.default.cStandard": "c17",
   "C_Cpp.default.cppStandard": "c++23",
-  "C_Cpp.default.includePath": ["${workspaceFolder}"],
+  "C_Cpp.default.includePath": [
+    "${workspaceFolder}"
+  ],
   "C_Cpp.default.macFrameworkPath": [
     "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks"
   ],
-
   // HTML
   "[html]": {
     "editor.defaultFormatter": "vscode.html-language-features"
   },
-
   // Javascript, Shell
   "[javascript][shellsctipt]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.tabSize": 4
   },
-
   // JSON
   "[json]": {
     "editor.defaultFormatter": "vscode.json-language-features"
@@ -120,44 +126,29 @@
   "[jsonc]": {
     "editor.codeActionsOnSave": {
       "source.fixAll": "always"
-    },
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    }
   },
-
   // Markdown
   "[markdown]": {
     "editor.formatOnSave": true
-    // "editor.defaultFormatter": "sissel.shopify-liquid"
   },
-
   // Python
   "[python]": {
     "editor.codeActionsOnSave": {
       "source.fixAll": "always",
       "source.organizeImports": "always"
     },
-    "editor.defaultFormatter": "ms-python.black-formatter"
+    "editor.defaultFormatter": "charliermarsh.ruff"
   },
-  "black-formatter.args": ["--line-length", "80"],
-  "black-formatter.interpreter": ["python3"],
-  "isort.args": ["--profile", "black"],
-  "isort.interpreter": ["python3"],
   "python.analysis.diagnosticMode": "workspace",
   "python.analysis.extraPaths": [
     "/Applications/Autodesk/maya2026/Maya.app/Contents/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages",
     "/Applications/Autodesk/Arnold/mtoa/2026/scripts"
   ],
-
+  "python.defaultInterpreterPath": "/opt/homebrew/bin/python3",
+  "ruff.lineLength": 80,
   // SCSS
   "[scss]": {
     "editor.defaultFormatter": "vscode.css-language-features"
-  },
-  "vsicons.dontShowNewVersionMessage": true,
-  "python.defaultInterpreterPath": "/opt/homebrew/bin/python3",
-  "workbench.editorAssociations": {
-    "*.db": "default"
-  },
-
-  // CodeTogether
-  "codetogether.userName": "Charles M C"
+  }
 }
