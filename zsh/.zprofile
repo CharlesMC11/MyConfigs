@@ -16,8 +16,8 @@ if [[ -d ~MyFiles ]]; then
     done
     unset directories
 
-    hash -d MyJournals=~MyFiles/Documents/Journals
-    hash -d MyShasta=~MyJournals/63.72.75.73.68.65.73/'ᜇᜓ ᜐ᜔ᜌᜊᜒᜉ'
+    hash -d MyJournals=/Volumes/Journals
+    hash -d MyShasta=~MyJournals/__domingo.shasta__
 
     for dir in Art Photos Screenshots; do
         hash -d My${dir}=~MyPictures/${dir}
@@ -66,3 +66,4 @@ for dir in ~BINS/*(^.); do
     pythonpath=("${dir:A}" ${==pythonpath})
 done
 unset dir
+
