@@ -65,7 +65,7 @@ macos: macos.sh
 	./$<
 
 
-MAYA_YEAR := 2025
+MAYA_YEAR := 2026
 MAYA_DIR  := $(LIBRARY_DIR)/Preferences/Autodesk/maya
 maya: maya/Maya.env maya/myRigging.json maya/userSetup.py
 	cd ./$@;\
