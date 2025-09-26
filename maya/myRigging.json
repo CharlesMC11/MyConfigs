@@ -106,7 +106,7 @@
                                                                     },
                                                                     {
                                                                         "objectName": "ngSkinTools2_mainWindow",
-                                                                        "title": "ngSkinTools 2.1.6",
+                                                                        "title": "ngSkinTools 2.4.0",
                                                                         "uiScript": "python(\"import ngSkinTools2; ngSkinTools2.workspace_control_main_window()\");",
                                                                         "retain": false,
                                                                         "deleteLater": true,
