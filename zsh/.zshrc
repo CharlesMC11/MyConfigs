@@ -69,5 +69,4 @@ refresh () {
 
 # prompt #######################################################################
 
-source /opt/homebrew/opt/spaceship/spaceship.zsh
-
+eval "$(starship init zsh)"

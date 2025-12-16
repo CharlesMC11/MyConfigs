@@ -10,7 +10,7 @@ brew "mas"
 brew "openssl@3"
 brew "nginx", restart_service: :changed
 brew "ruff"
-brew "spaceship"
+brew "starship"
 brew "uv"
 brew "vim"
 brew "zsh"
