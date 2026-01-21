@@ -66,4 +66,3 @@ for dir in ~BINS/*(^.); do
     pythonpath=("${dir:A}" ${==pythonpath})
 done
 unset dir
-

@@ -74,7 +74,7 @@ maya: maya/Maya.env maya/myRigging.json maya/userSetup.py
 	$(symlink) userSetup.py   $(MAYA_DIR)/scripts
 
 
-misc: misc/.bashrc misc/.vimrc
+misc: misc/.bashrc misc/.vimrc misc/starship.toml
 	for src in $^; do\
 		$(symlink) $$src ~;\
 	done
@@ -95,6 +95,4 @@ zsh: zsh/.zprofile zsh/.zshenv zsh/.zshrc zsh/spaceship.zsh
 	$(symlink) .zprofile         $(LOCAL_CONFIG_DIR)/zsh;\
 	$(symlink) .zprofile.zwc     $(LOCAL_CONFIG_DIR)/zsh;\
 	$(symlink) .zshrc            $(LOCAL_CONFIG_DIR)/zsh;\
-	$(symlink) .zshrc.zwc        $(LOCAL_CONFIG_DIR)/zsh;\
-	$(symlink) spaceship.zsh     $(LOCAL_CONFIG_DIR);\
-	$(symlink) spaceship.zsh.zwc $(LOCAL_CONFIG_DIR)
+	$(symlink) .zshrc.zwc        $(LOCAL_CONFIG_DIR)/zsh

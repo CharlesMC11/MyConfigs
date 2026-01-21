@@ -1,0 +1,7 @@
+add_newline = false
+
+[cpp]
+disabled = false
+
+[shell]
+disabled = false
