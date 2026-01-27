@@ -58,11 +58,11 @@ if [[ ! -d ~BINS ]]; then
     mkdir ~BINS
 fi
 hash -d BINS
-path=(~BINS ${==path})
-pythonpath=(~BINS ${==pythonpath})
+path=(~BINS "${path[@]}")
+# pythonpath=(~BINS ${==pythonpath})
 
-for dir in ~BINS/*(^.); do
-    path=("${dir:A}" ${==path})
-    pythonpath=("${dir:A}" ${==pythonpath})
+for dir in ~BINS/*(N^.); do
+    path=("${dir:A}" "${path[@]}")
+    # pythonpath=("${dir:A}" ${==pythonpath})
 done
 unset dir
