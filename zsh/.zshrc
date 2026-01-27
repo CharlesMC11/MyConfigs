@@ -1,3 +1,5 @@
+source "${GHOSTTY_RESOURCES_DIR}/shell-integration/zsh/ghostty-integration" 2>/dev/null
+
 # options ######################################################################
 
 setopt AUTOCD
