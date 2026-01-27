@@ -26,8 +26,9 @@ setopt HIST_SAVE_NO_DUPS
 setopt HIST_VERIFY
 setopt SHARE_HISTORY
 
-autoload -Uz compinit
-compinit
+autoload -Uz compinit; compinit
+
+zmodload zsh/files
 
 # aliases ######################################################################
 
@@ -38,7 +39,7 @@ alias -g ......=../../../../..
 
 alias ls='ls -hp --color=auto'
 
-alias ppath='echo "${PATH//:/\n}"'
+alias ppath='print -l -- $path'
 
 alias exiftool='exiftool -P'
 
