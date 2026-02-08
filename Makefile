@@ -15,6 +15,15 @@ GIT_CONFIGS_DIR		:= $(XDG_CONFIG_HOME)/git
 
 VSCODE_PREFS_DIR	:= $(APP_SUPPORT_DIR)/Code/User
 
+ADOBE_SUPPORT_DIR	:= $(APP_SUPPORT_DIR)/Adobe
+CAMERA_RAW_SRCS		:= $(wildcard ./Adobe/CameraRaw/*)
+LIGHTROOM_SRCS		:= $(wildcard ./Adobe/Lightroom/*)
+
+ADOBE_TARGETS		:= $(pathsubst ./Adobe/%, $(ADOBE_SUPPORT_DIR)/%, \
+						$(CAMERA_RAW_SRCS) $(LIGHTROOM_SRCS))
+
+C1_SUPPORT_DIR		:= $(APP_SUPPORT_DIR)/Capture\ One
+
 MAYA_PREFS_DIR		:= $(LIBRARY_DIR)/Preferences/Autodesk/maya
 MAYA_VERSION		:= 2026
 MAYA_SCRIPTS_DIR	:= $(MAYA_PREFS_DIR)/scripts
@@ -65,18 +74,18 @@ $(HOME)/.zshenv: Makefile
 		"export ZDOTDIR='$(ZDOTDIR)'" >| "$@"
 	@zcompile -U "$@"
 
-$(ZDOTDIR)/.z%: ./zsh/.z% | $(ZDOTDIR)/.dirstamp
+$(ZDOTDIR)/.z%: ./Zsh/.z% | $(ZDOTDIR)/.dirstamp
 	@$(symlink) "$(abspath $<)" "$@"
 	@zcompile -U "$@"
 
 bash: $(HOME)/.bashrc
 
-$(HOME)/.bashrc: ./misc/.bashrc
+$(HOME)/.bashrc: ./Misc/.bashrc
 	@$(symlink) "$(abspath $<)" "$@"
 
 starship: $(XDG_CONFIG_HOME)/starship.toml
 
-$(XDG_CONFIG_HOME)/starship.toml: ./misc/starship.toml
+$(XDG_CONFIG_HOME)/starship.toml: ./Misc/starship.toml
 	$(symlink) "$(abspath $<)" "$@"
 
 # Git ##########################################################################
@@ -84,22 +93,22 @@ $(XDG_CONFIG_HOME)/starship.toml: ./misc/starship.toml
 git: $(HOME)/.gitconfig \
 	$(GIT_CONFIGS_DIR)/.gitattributes $(GIT_CONFIGS_DIR)/.gitignore
 
-$(HOME)/.gitconfig: ./git/.gitconfig Makefile
+$(HOME)/.gitconfig: ./Git/.gitconfig Makefile
 	sed -e 's|@@GIT_CONFIGS_DIR@@|$(abspath $(GIT_CONFIGS_DIR))|g' "$<" >| "$@"
 
-$(GIT_CONFIGS_DIR)/.git%: ./git/.git% | $(GIT_CONFIGS_DIR)/.dirstamp
+$(GIT_CONFIGS_DIR)/.git%: ./Git/.git% | $(GIT_CONFIGS_DIR)/.dirstamp
 	@$(symlink) "$(abspath $<)" "$@"
 
 # Editors ######################################################################
 
 vim: $(HOME)/.vimrc
 
-$(HOME)/.vimrc: ./misc/.vimrc
+$(HOME)/.vimrc: ./Misc/.vimrc
 	@$(symlink) "$(abspath $<)" "$@"
 
 vscode: $(VSCODE_PREFS_DIR)/settings.json $(VSCODE_PREFS_DIR)/tasks.json
 
-$(VSCODE_PREFS_DIR)/%.json: ./vscode/%.json | $(VSCODE_PREFS_DIR)/.dirstamp
+$(VSCODE_PREFS_DIR)/%.json: ./VSCode/%.json | $(VSCODE_PREFS_DIR)/.dirstamp
 	@$(symlink) "$(abspath $<)" "$@"
 
 vscode-extensions: $(XDG_STATE_HOME)/.vscode_stamp
@@ -111,9 +120,9 @@ $(XDG_STATE_HOME)/.vscode_stamp: Brewfile
 
 # CLI Tools ####################################################################
 
-exiftool: $(XDG_DATA_HOME)/exiftool
+exiftool: $(XDG_DATA_HOME)/ExifTool
 
-$(XDG_DATA_HOME)/exiftool: ./exiftool
+$(XDG_DATA_HOME)/Exiftool: ./ExifTool
 	@if [[ -e $@ && ! -h $@ ]]; then mv "$@" "$@$(BACKUP_SUFFIX)"; fi
 	@$(symlink) "$(abspath $<)" "$@"
 
@@ -121,41 +130,41 @@ $(XDG_DATA_HOME)/exiftool: ./exiftool
 
 # TODO:
 adobe:
-	cd ./$@;\
-	for dir_name in CameraRaw Lightroom; do\
-		target_dir="$(APP_SUPPORT_DIR)/Adobe/$${dir_name}";\
-		for src in $${dir_name}/*; do\
-			target="$${target_dir}/$${src:t}";\
-			if [[ ! -h "$$target" && -d "$$target" && $$(ls -A "$$target") ]]; then\
-				mv "$$target" "$${target}.bak";\
-				echo "Backed up "$${target:t}" because it was not empty" 1>&2;\
-			fi;\
- 			$(symlink) "$$src" "$$target";\
-		done;\
+	@cd ./Adobe; \
+	for dir_name in CameraRaw Lightroom; do \
+		target_dir=$(ADOBE_SUPPORT_DIR)/$${dir_name}; \
+		for src in $${dir_name}/*; do \
+			target="$${target_dir}/$${src:t}"; \
+			if [[ ! -h "$$target" && -d "$$target" && $$(ls -A "$$target") ]]; then \
+				mv "$$target" "$${target}$(BACKUP_SUFFIX)"; \
+				echo "Backed up "$${target:t}" because it was not empty" 1>&2; \
+			fi; \
+ 			$(symlink) "$$src" "$$target"; \
+		done; \
 	done
 
 # TODO:
 capture_one:
-	cd ./$@;\
-	for src in Metadata/*.copreset(N); do\
-		$(hardlink) "$$src" "$(APP_SUPPORT_DIR)/Capture One/Presets60/$${src}";\
-	done;\
-	for src in Profiles/*.icc(N); do\
-		$(symlink) "$$src" "$(LIBRARY_DIR)/ColorSync/$${src}";\
+	@cd ./CaptureOne; \
+	for src in Metadata/*.copreset(.N); do \
+		$(hardlink) "$$src" $(C1_SUPPORT_DIR)/Presets60/$${src}; \
+	done; \
+	for src in Profiles/*.icc(.N); do \
+		$(symlink) "$$src" "$(LIBRARY_DIR)/ColorSync/$${src}"; \
 	done
 
 maya: $(MAYA_PREFS_DIR)/$(MAYA_VERSION)/Maya.env \
 	$(MAYA_WORKSPACES_DIR)/myRigging.json $(MAYA_SCRIPTS_DIR)/userSetup.py
 
-$(MAYA_PREFS_DIR)/$(MAYA_VERSION)/Maya.env: ./maya/Maya.env | \
+$(MAYA_PREFS_DIR)/$(MAYA_VERSION)/Maya.env: ./Maya/Maya.env | \
 		$(MAYA_PREFS_DIR)/$(MAYA_VERSION)/.dirstamp
 	$(symlink) "$(abspath $<)" "$@"
 
-$(MAYA_WORKSPACES_DIR)/myRigging.json: ./maya/myRigging.json | \
+$(MAYA_WORKSPACES_DIR)/myRigging.json: ./Maya/myRigging.json | \
 		$(MAYA_WORKSPACES_DIR)/.dirstamp
 	$(symlink) "$(abspath $<)" "$@"
 
-$(MAYA_SCRIPTS_DIR)/userSetup.py: ./maya/userSetup.py | \
+$(MAYA_SCRIPTS_DIR)/userSetup.py: ./Maya/userSetup.py | \
 		$(MAYA_SCRIPTS_DIR)/.dirstamp
 	$(symlink) "$(abspath $<)" "$@"
 
