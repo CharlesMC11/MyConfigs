@@ -1,9 +1,26 @@
-SHELL				:= zsh
+SHELL				:= $(shell which zsh)
 
 LIBRARY_DIR			:= $(HOME)/Library
 APP_SUPPORT_DIR		:= $(LIBRARY_DIR)/Application Support
 
-LOCAL_CONFIG_DIR	:= $(HOME)/.config
+XDG_CACHE_HOME		:= $(HOME)/.cache
+XDG_CONFIG_HOME		:= $(HOME)/.config
+XDG_BIN_HOME		:= $(HOME)/.local/bin
+XDG_DATA_HOME		:= $(HOME)/.local/share
+XDG_STATE_HOME		:= $(HOME)/.local/state
+
+ZDOTDIR				:= $(XDG_CONFIG_HOME)/zsh
+
+GIT_CONFIGS_DIR		:= $(XDG_CONFIG_HOME)/git
+
+VSCODE_PREFS_DIR	:= $(APP_SUPPORT_DIR)/Code/User
+
+MAYA_PREFS_DIR		:= $(LIBRARY_DIR)/Preferences/Autodesk/maya
+MAYA_VERSION		:= 2026
+MAYA_SCRIPTS_DIR	:= $(MAYA_PREFS_DIR)/scripts
+MAYA_WORKSPACES_DIR	:= $(MAYA_PREFS_DIR)/$(MAYA_VERSION)/prefs/workspaces
+
+BACKUP_SUFFIX		:= .bak
 
 hardlink			:= install -v -l h
 symlink				:= install -v -l as
