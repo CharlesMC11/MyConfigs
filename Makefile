@@ -1,7 +1,7 @@
 SHELL				:= $(shell which zsh)
 
 LIBRARY_DIR			:= $(HOME)/Library
-APP_SUPPORT_DIR		:= $(LIBRARY_DIR)/Application Support
+APP_SUPPORT_DIR		:= $(LIBRARY_DIR)/Application\ Support
 
 XDG_CACHE_HOME		:= $(HOME)/.cache
 XDG_CONFIG_HOME		:= $(HOME)/.config
@@ -36,7 +36,7 @@ all: $(TARGETS)
 
 macos: $(XDG_STATE_HOME)/.macos_stamp
 
-$(XDG_STATE_HOME)/.macos_stamp: ./macos.zsh
+$(XDG_STATE_HOME)/.macos_stamp: ./macos.zsh | $(XDG_STATE_HOME)/.dirstamp
 	"./$<"
 	touch "$@"
 
@@ -44,11 +44,11 @@ $(XDG_STATE_HOME)/.macos_stamp: ./macos.zsh
 
 homebrew: $(XDG_STATE_HOME)/.homebrew_stamp
 
-$(XDG_STATE_HOME)/.homebrew_stamp: Brewfile
-	@if [[ -z $(shell which brew) ]]; then\
-		eval $(shell curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh);\
+$(XDG_STATE_HOME)/.homebrew_stamp: Brewfile | $(XDG_STATE_HOME)/.dirstamp
+	@if [[ -z $(shell command -v brew) ]]; then \
+		eval $$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh); \
 	fi
-	@brew bundle
+	@-brew bundle --verbose
 	@touch "$@"
 
 # Shells #######################################################################
@@ -97,9 +97,9 @@ vim: $(HOME)/.vimrc
 $(HOME)/.vimrc: ./misc/.vimrc
 	@$(symlink) "$(abspath $<)" "$@"
 
-vscode:  $(VSCODE_PREFS_DIR)/settings.json $(VSCODE_PREFS_DIR)/tasks.json
+vscode: $(VSCODE_PREFS_DIR)/settings.json $(VSCODE_PREFS_DIR)/tasks.json
 
-$(VSCODE_PREFS_DIR)/%.json: vscode/%.json | $(VSCODE_PREFS_DIR)/.dirstamp
+$(VSCODE_PREFS_DIR)/%.json: ./vscode/%.json | $(VSCODE_PREFS_DIR)/.dirstamp
 	@$(symlink) "$(abspath $<)" "$@"
 
 vscode-extensions: $(XDG_STATE_HOME)/.vscode_stamp
@@ -171,4 +171,4 @@ clean:
 	-rm -f $(XDG_STATE_HOME)/.*_stamp
 	-rm -f $(HOME)/.zshenv
 	-rm -f $(HOME)/.gitconfig
-	-find . type f -name '*.dirstamp' -delete
+	-find . -type f -name '*.dirstamp' -delete

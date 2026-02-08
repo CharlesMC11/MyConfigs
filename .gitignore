@@ -8,3 +8,5 @@
 *.xmp
 
 *stamp
+
+.DS_Store
