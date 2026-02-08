@@ -11,26 +11,26 @@ if [[ -d ~MyFiles ]]; then
 
     declare -Ua directories
     directories=(3D Configs Documents Pictures Programming Wiki Work)
-    for dir in ${==directories}; do
-        hash -d My${dir}=~MyFiles/${dir}
+    for directory in "${(@)directories}"; do
+        hash -d My${directory}=~MyFiles/${directory}
     done
     unset directories
 
     hash -d MyJournals=/Volumes/Journals
     hash -d MyShasta=~MyJournals/__domingo.shasta__
 
-    for dir in Art Photos Screenshots; do
-        hash -d My${dir}=~MyPictures/${dir}
+    for directory in Art Photos Screenshots; do
+        hash -d My${directory}=~MyPictures/${directory}
     done
 
     hash -d DeAnza=~MyFiles/'De Anza College'
 
-    pythonpath=(~MyProgramming/bin ~MyProgramming ${==pythonpath})
-    for dir in ~MyProgramming/bin/*(/); do
-        declare -Ua files
-        files=($dir/*.py(N))
-        if ((${#files})); then
-            pythonpath=("$dir" ${==pythonpath})
+    pythonpath=(~MyProgramming/bin ~MyProgramming "${(@)pythonpath}")
+    declare -Ua files
+    for directory in ~MyProgramming/bin/*(/); do
+        files=($directory/*.py(N))
+        if (( #files )); then
+            pythonpath=("$directory" "${(@)pythonpath}")
         fi
     done
     unset files
@@ -58,11 +58,11 @@ if [[ ! -d ~BINS ]]; then
     mkdir ~BINS
 fi
 hash -d BINS
-path=(~BINS "${path[@]}")
+path=(~BINS "${(@)path}")
 # pythonpath=(~BINS ${==pythonpath})
 
-for dir in ~BINS/*(N^.); do
-    path=("${dir:A}" "${path[@]}")
-    # pythonpath=("${dir:A}" ${==pythonpath})
+for directory in ~BINS/*(N^.); do
+    path=("${directory:A}" "${(@)path}")
+    # pythonpath=("${directory:A}" ${==pythonpath})
 done
-unset dir
+unset directory

@@ -2,33 +2,35 @@ source "${GHOSTTY_RESOURCES_DIR}/shell-integration/zsh/ghostty-integration" 2>/d
 
 # options ######################################################################
 
-setopt AUTOCD
-setopt CDABLE_VARS
-setopt CHASE_DOTS
-setopt PUSHD_IGNORE_DUPS
-
-setopt AUTO_LIST
-
-setopt BAD_PATTERN
-setopt EXTENDED_GLOB
-setopt GLOB_STAR_SHORT
-
-setopt HIST_ALLOW_CLOBBER
-setopt HIST_EXPIRE_DUPS_FIRST
-setopt HIST_FCNTL_LOCK
-setopt HIST_FIND_NO_DUPS
-setopt HIST_IGNORE_ALL_DUPS
-setopt HIST_IGNORE_DUPS
-setopt HIST_NO_FUNCTIONS
-setopt HIST_NO_STORE
-setopt HIST_REDUCE_BLANKS
-setopt HIST_SAVE_NO_DUPS
-setopt HIST_VERIFY
-setopt SHARE_HISTORY
-
-autoload -Uz compinit; compinit
+typeset -Ua opts
+opts=(
+    AUTOCD
+    CDABLE_VARS
+    CHASE_DOTS
+    PUSHD_IGNORE_DUPS
+    AUTO_LIST
+    BAD_PATTERN
+    EXTENDED_GLOB
+    GLOB_STAR_SHORT
+    HIST_ALLOW_CLOBBER
+    HIST_EXPIRE_DUPS_FIRST
+    HIST_FCNTL_LOCK
+    HIST_FIND_NO_DUPS
+    HIST_IGNORE_ALL_DUPS
+    HIST_IGNORE_DUPS
+    HIST_NO_FUNCTIONS
+    HIST_NO_STORE
+    HIST_REDUCE_BLANKS
+    HIST_SAVE_NO_DUPS
+    HIST_VERIFY
+    SHARE_HISTORY
+)
+setopt "${(@)opts}"
+unset opts
 
 zmodload zsh/files
+
+autoload -Uz compinit; compinit
 
 # aliases ######################################################################
 
@@ -39,20 +41,17 @@ alias -g ......=../../../../..
 
 alias ls='ls -hp --color=auto'
 
-alias ppath='print -l -- $path'
+alias paths='print -l -- "${(@)path}"'
 
 alias exiftool='exiftool -P'
-
-alias make=gmake
 
 # functions ####################################################################
 
 rm_ds_store () {
-    if [[ -n $1 && -d $1 ]]; then
-         cd "$1"
-        shift
-    fi
-    rm **/.DS_Store
+    (
+        [[ -d $1 ]] && cd "$1"
+        rm **/.DS_Store(N)
+    )
 }
 
 brew_update () {
