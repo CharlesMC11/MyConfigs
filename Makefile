@@ -1,14 +1,14 @@
-SHELL            := zsh
+SHELL				:= zsh
 
-LIBRARY_DIR      := $(HOME)/Library
-APP_SUPPORT_DIR  := $(LIBRARY_DIR)/Application Support
+LIBRARY_DIR			:= $(HOME)/Library
+APP_SUPPORT_DIR		:= $(LIBRARY_DIR)/Application Support
 
-LOCAL_CONFIG_DIR := $(HOME)/.config
+LOCAL_CONFIG_DIR	:= $(HOME)/.config
 
-hardlink         := install -v -l h
-symlink          := install -v -l as
+hardlink			:= install -v -l h
+symlink				:= install -v -l as
 
-PHONIES          := adobe capture_one exiftool git maya misc vscode zsh
+PHONIES				:= adobe capture_one exiftool git maya misc vscode zsh
 .PHONY: $(PHONIES)
 
 
