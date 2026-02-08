@@ -1,4 +1,6 @@
-source "${GHOSTTY_RESOURCES_DIR}/shell-integration/zsh/ghostty-integration" 2>/dev/null
+if [[ -n $GHOSTTY_RESOURCES_DIR ]]; then
+  source "${GHOSTTY_RESOURCES_DIR}/shell-integration/zsh/ghostty-integration"
+fi
 
 # options ######################################################################
 
@@ -71,7 +73,7 @@ todo () {
 }
 
 refresh () {
-  source ~CONFIGS/zsh/.zprofile ~CONFIGS/zsh/.zshrc
+  exec "$SHELL"
 }
 
 # prompt #######################################################################
