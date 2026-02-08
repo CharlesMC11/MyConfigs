@@ -3,8 +3,8 @@
 	glog = log --graph
 	last = log -1 HEAD
 [core]
-	attributesfile = ~/.config/git/.gitattributes
-	excludesfile = ~/.config/git/.gitignore
+	attributesfile = @@GITDOTDIR@@/.gitattributes
+	excludesfile = @@GITDOTDIR@@/.gitignore
 [init]
 	defaultBranch = main
 [user]
