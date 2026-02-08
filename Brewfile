@@ -1,5 +1,3 @@
-tap "dart-lang/dart"
-tap "sass/sass"
 brew "exiftool"
 brew "git-lfs"
 brew "mas"
@@ -20,6 +18,9 @@ cask "jetbrains-toolbox"
 cask "logitech-g-hub"
 cask "omnissa-horizon-client"
 cask "steam"
+cask "unity"
+cask "unity-hub"
+cask "utm"
 cask "virtualbox"
 cask "visual-studio-code"
 cask "wacom-tablet"
@@ -29,15 +30,13 @@ mas "Keynote", id: 409183694
 mas "Microsoft PowerPoint", id: 462062816
 mas "Microsoft Word", id: 462054704
 mas "Numbers", id: 361304891
-mas "Numbers", id: 409203825
-mas "Pages", id: 409201541
+mas "Pages", id: 361309726
 mas "Pixen", id: 525180431
 mas "Xcode", id: 497799835
 vscode "charliermarsh.ruff"
 vscode "editorconfig.editorconfig"
 vscode "esbenp.prettier-vscode"
 vscode "genuitecllc.codetogether"
-vscode "github.copilot"
 vscode "github.copilot-chat"
 vscode "istareatscreens.masm-runner"
 vscode "llvm-vs-code-extensions.lldb-dap"
