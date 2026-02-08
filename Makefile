@@ -61,7 +61,7 @@ homebrew: Brewfile
 	brew bundle
 
 
-macos: macos.sh
+macos: macos.zsh
 	./$<
 
 
@@ -86,7 +86,7 @@ vscode: vscode/settings.json vscode/tasks.json
 	done
 
 
-zsh: zsh/.zprofile zsh/.zshenv zsh/.zshrc zsh/spaceship.zsh
+zsh: zsh/.zprofile zsh/.zshenv zsh/.zshrc misc/starship.toml
 	for src in $^; do zcompile "$$src"; done
 
 	cd ./$@;\
