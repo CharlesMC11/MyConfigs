@@ -2,7 +2,7 @@
 
 Config scripts/files for
 
-- MacOS
+- macOS
 - Homebrew
 - Zsh
 - Bash
