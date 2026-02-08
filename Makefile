@@ -74,13 +74,13 @@ $(HOME)/.zshenv: Makefile
 		"export ZDOTDIR='$(ZDOTDIR)'" >| "$@"
 	@zcompile -U "$@"
 
-$(ZDOTDIR)/.z%: ./Zsh/.z% | $(ZDOTDIR)/.dirstamp
+$(ZDOTDIR)/.z%: ./Zsh/z% | $(ZDOTDIR)/.dirstamp
 	@$(symlink) "$(abspath $<)" "$@"
 	@zcompile -U "$@"
 
 bash: $(HOME)/.bashrc
 
-$(HOME)/.bashrc: ./Misc/.bashrc
+$(HOME)/.bashrc: ./Misc/bashrc
 	@$(symlink) "$(abspath $<)" "$@"
 
 starship: $(XDG_CONFIG_HOME)/starship.toml
@@ -93,17 +93,17 @@ $(XDG_CONFIG_HOME)/starship.toml: ./Misc/starship.toml
 git: $(HOME)/.gitconfig \
 	$(GIT_CONFIGS_DIR)/.gitattributes $(GIT_CONFIGS_DIR)/.gitignore
 
-$(HOME)/.gitconfig: ./Git/.gitconfig Makefile
+$(HOME)/.gitconfig: ./Git/gitconfig Makefile
 	sed -e 's|@@GIT_CONFIGS_DIR@@|$(abspath $(GIT_CONFIGS_DIR))|g' "$<" >| "$@"
 
-$(GIT_CONFIGS_DIR)/.git%: ./Git/.git% | $(GIT_CONFIGS_DIR)/.dirstamp
+$(GIT_CONFIGS_DIR)/.git%: ./Git/git% | $(GIT_CONFIGS_DIR)/.dirstamp
 	@$(symlink) "$(abspath $<)" "$@"
 
 # Editors ######################################################################
 
 vim: $(HOME)/.vimrc
 
-$(HOME)/.vimrc: ./Misc/.vimrc
+$(HOME)/.vimrc: ./Misc/vimrc
 	@$(symlink) "$(abspath $<)" "$@"
 
 vscode: $(VSCODE_PREFS_DIR)/settings.json $(VSCODE_PREFS_DIR)/tasks.json
