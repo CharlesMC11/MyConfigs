@@ -1,7 +1,7 @@
 SHELL				:= $(shell which zsh)
 
 LIBRARY_DIR			:= $(HOME)/Library
-APP_SUPPORT_DIR		:= $(LIBRARY_DIR)/Application\ Support
+APP_SUPPORT_DIR		:= $(LIBRARY_DIR)/Application Support
 
 XDG_CACHE_HOME		:= $(HOME)/.cache
 XDG_CONFIG_HOME		:= $(HOME)/.config
@@ -105,10 +105,9 @@ vim: $(HOME)/.vimrc
 $(HOME)/.vimrc: ./Misc/vimrc
 	@$(symlink) "$(abspath $<)" "$@"
 
-vscode: $(VSCODE_PREFS_DIR)/settings.json $(VSCODE_PREFS_DIR)/tasks.json
-
-$(VSCODE_PREFS_DIR)/%.json: ./VSCode/%.json | $(VSCODE_PREFS_DIR)/.dirstamp
-	@$(symlink) "$(abspath $<)" "$@"
+vscode:
+	@for src in ./VSCode/*.json(.N); do \
+		$(symlink) "$${src:A}" "$(VSCODE_PREFS_DIR)/$${src:t}"; done
 
 vscode-extensions: $(XDG_STATE_HOME)/.vscode_stamp
 
