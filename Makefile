@@ -16,13 +16,12 @@ GIT_CONFIGS_DIR		:= $(XDG_CONFIG_HOME)/git
 VSCODE_PREFS_DIR	:= $(APP_SUPPORT_DIR)/Code/User
 
 ADOBE_SUPPORT_DIR	:= $(APP_SUPPORT_DIR)/Adobe
-CAMERA_RAW_SRCS		:= $(wildcard ./Adobe/CameraRaw/*)
-LIGHTROOM_SRCS		:= $(wildcard ./Adobe/Lightroom/*)
 
-ADOBE_TARGETS		:= $(pathsubst ./Adobe/%, $(ADOBE_SUPPORT_DIR)/%, \
-						$(CAMERA_RAW_SRCS) $(LIGHTROOM_SRCS))
+C1_METADATA_DIR		:= $(APP_SUPPORT_DIR)/Capture\ One/Presets60/Metadata
 
-C1_SUPPORT_DIR		:= $(APP_SUPPORT_DIR)/Capture\ One
+CAMERA_PROFILES_DIR	:= $(LIBRARY_DIR)/ColorSync/Profiles
+CAMERA_PROFILES 	:= $(patsubst ./CaptureOne/Profiles/%,\
+						$(CAMERA_PROFILES_DIR)/%,$(CAMERA_PROFILE_SRCS))
 
 MAYA_PREFS_DIR		:= $(LIBRARY_DIR)/Preferences/Autodesk/maya
 MAYA_VERSION		:= 2026
@@ -126,7 +125,7 @@ $(XDG_DATA_HOME)/Exiftool: ./ExifTool
 	@if [[ -e $@ && ! -h $@ ]]; then mv "$@" "$@$(BACKUP_SUFFIX)"; fi
 	@$(symlink) "$(abspath $<)" "$@"
 
-# Applications #################################################################
+# Adobe ########################################################################
 
 # TODO:
 adobe:
@@ -143,15 +142,17 @@ adobe:
 		done; \
 	done
 
+# Capture One ##################################################################
+
 # TODO:
-capture_one:
-	@cd ./CaptureOne; \
-	for src in Metadata/*.copreset(.N); do \
-		$(hardlink) "$$src" $(C1_SUPPORT_DIR)/Presets60/$${src}; \
-	done; \
-	for src in Profiles/*.icc(.N); do \
-		$(symlink) "$$src" "$(LIBRARY_DIR)/ColorSync/$${src}"; \
-	done
+capture_one: $(CAMERA_PROFILES) | $(C1_METADATA_DIR)/.dirstamp
+	@for src in ./CaptureOne/Metadata/*.copreset(.N); do \
+		$(hardlink) "$${src:A}" "$(C1_METADATA_DIR)/$${src:t}"; done
+
+$(CAMERA_PROFILES_DIR)/%.icc: ./CaptureOne/Profiles/%.icc | $(CAMERA_PROFILES_DIR)/.dirstamp
+	@$(symlink) "$(abspath $<)" "$@"
+
+# Maya #########################################################################
 
 maya: $(MAYA_PREFS_DIR)/$(MAYA_VERSION)/Maya.env \
 	$(MAYA_WORKSPACES_DIR)/myRigging.json $(MAYA_SCRIPTS_DIR)/userSetup.py
