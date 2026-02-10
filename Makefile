@@ -9,6 +9,9 @@ XDG_BIN_HOME		:= $(HOME)/.local/bin
 XDG_DATA_HOME		:= $(HOME)/.local/share
 XDG_STATE_HOME		:= $(HOME)/.local/state
 
+RAM_DISK_NAME		:= Workbench
+RAM_DISK_SIZE		:= 16 GiB
+
 ZDOTDIR				:= $(XDG_CONFIG_HOME)/zsh
 
 GIT_CONFIGS_DIR		:= $(XDG_CONFIG_HOME)/git
@@ -42,11 +45,15 @@ all: $(TARGETS)
 
 # macOS ########################################################################
 
-macos: $(XDG_STATE_HOME)/.macos_stamp
+macos: $(XDG_STATE_HOME)/.macos_stamp /Volumes/Workbench
 
-$(XDG_STATE_HOME)/.macos_stamp: ./macos.zsh | $(XDG_STATE_HOME)/.dirstamp
+$(XDG_STATE_HOME)/.macos_stamp: ./macOS/macos.zsh | $(XDG_STATE_HOME)/.dirstamp
 	"./$<"
 	touch "$@"
+
+/Volumes/Workbench: ./macOS/load_ramdisk.zsh
+	"./$<" $(RAM_DISK_NAME) $(RAM_DISK_SIZE)
+	$(symlink) "$(abspath $<)" $(XDG_BIN_HOME)/load_ramdisk
 
 # Homebrew #####################################################################
 
