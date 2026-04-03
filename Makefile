@@ -1,43 +1,48 @@
-SHELL				:= $(shell which zsh)
+SHELL					:= $(shell which zsh)
 
-LIBRARY_DIR			:= $(HOME)/Library
-APP_SUPPORT_DIR		:= $(LIBRARY_DIR)/Application Support
+LIBRARY_DIR				:= $(HOME)/Library
+APP_SUPPORT_DIR			:= $(LIBRARY_DIR)/Application Support
 
-XDG_CACHE_HOME		:= $(HOME)/.cache
-XDG_CONFIG_HOME		:= $(HOME)/.config
-XDG_BIN_HOME		:= $(HOME)/.local/bin
-XDG_DATA_HOME		:= $(HOME)/.local/share
-XDG_STATE_HOME		:= $(HOME)/.local/state
+XDG_CACHE_HOME			:= $(HOME)/.cache
+XDG_CONFIG_HOME			:= $(HOME)/.config
+XDG_BIN_HOME			:= $(HOME)/.local/bin
+XDG_DATA_HOME			:= $(HOME)/.local/share
+XDG_STATE_HOME			:= $(HOME)/.local/state
 
-RAM_DISK_NAME		:= Workbench
-RAM_DISK_SIZE		:= 16 GiB
+export RAM_DISK_NAME	:= Workbench
+export RAM_DISK_SIZE	:= 16
+export RAM_DISK_UNIT	:= GiB
+export RAM_DISK_LAUNCHD	:= me.charlesmc.ramdisk
+export RAM_DISK_SCRIPT	:= load_ramdisk
+export RAM_DISK_PLIST	:= ./macOS/ramdisk.plist.template
+RAM_DISK_PLIST_PATH		:= $(LIBRARY_DIR)/LaunchAgents/$(RAM_DISK_LAUNCHD).plist
 
-ZDOTDIR				:= $(XDG_CONFIG_HOME)/zsh
+ZDOTDIR					:= $(XDG_CONFIG_HOME)/zsh
 
-GIT_CONFIGS_DIR		:= $(XDG_CONFIG_HOME)/git
+GIT_CONFIGS_DIR			:= $(XDG_CONFIG_HOME)/git
 
-VSCODE_PREFS_DIR	:= $(APP_SUPPORT_DIR)/Code/User
+VSCODE_PREFS_DIR		:= $(APP_SUPPORT_DIR)/Code/User
 
-ADOBE_SUPPORT_DIR	:= $(APP_SUPPORT_DIR)/Adobe
+ADOBE_SUPPORT_DIR		:= $(APP_SUPPORT_DIR)/Adobe
 
-C1_METADATA_DIR		:= $(APP_SUPPORT_DIR)/Capture\ One/Presets60/Metadata
+C1_METADATA_DIR			:= $(APP_SUPPORT_DIR)/Capture\ One/Presets60/Metadata
 
-CAMERA_PROFILES_DIR	:= $(LIBRARY_DIR)/ColorSync/Profiles
-CAMERA_PROFILES 	:= $(patsubst ./CaptureOne/Profiles/%,\
-						$(CAMERA_PROFILES_DIR)/%,$(CAMERA_PROFILE_SRCS))
+CAMERA_PROFILES_DIR		:= $(LIBRARY_DIR)/ColorSync/Profiles
+CAMERA_PROFILES 		:= $(patsubst ./CaptureOne/Profiles/%,\
+							$(CAMERA_PROFILES_DIR)/%,$(CAMERA_PROFILE_SRCS))
 
-MAYA_PREFS_DIR		:= $(LIBRARY_DIR)/Preferences/Autodesk/maya
-MAYA_VERSION		:= 2026
-MAYA_SCRIPTS_DIR	:= $(MAYA_PREFS_DIR)/scripts
-MAYA_WORKSPACES_DIR	:= $(MAYA_PREFS_DIR)/$(MAYA_VERSION)/prefs/workspaces
+MAYA_PREFS_DIR			:= $(LIBRARY_DIR)/Preferences/Autodesk/maya
+MAYA_VERSION			:= 2026
+MAYA_SCRIPTS_DIR		:= $(MAYA_PREFS_DIR)/scripts
+MAYA_WORKSPACES_DIR		:= $(MAYA_PREFS_DIR)/$(MAYA_VERSION)/prefs/workspaces
 
-BACKUP_SUFFIX		:= .bak
+BACKUP_SUFFIX			:= .bak
 
-hardlink			:= install -v -l h
-symlink				:= install -v -l as
+hardlink				:= install -v -l h
+symlink					:= install -v -l as
 
-TARGETS				:= macos homebrew zsh bash starship git vim vscode \
-						exiftool adobe capture_one maya
+TARGETS					:= macos homebrew zsh bash starship git vim vscode \
+							exiftool adobe capture_one maya
 
 .PHONY: all $(TARGETS) clean
 
@@ -54,6 +59,13 @@ $(XDG_STATE_HOME)/.macos_stamp: ./macOS/macos.zsh | $(XDG_STATE_HOME)/.dirstamp
 /Volumes/Workbench: ./macOS/load_ramdisk.zsh
 	"./$<" $(RAM_DISK_NAME) $(RAM_DISK_SIZE)
 	$(symlink) "$(abspath $<)" $(XDG_BIN_HOME)/load_ramdisk
+
+workbenchd: ./macOS/$(RAM_DISK_SCRIPT).zsh $(RAM_DISK_PLIST_PATH)
+	@$(symlink) "$<" "$(XDG_BIN_HOME)/$(RAM_DISK_SCRIPT)"
+
+$(RAM_DISK_PLIST_PATH): $(RAM_DISK_PLIST)
+	@print -- "Installing '$<' to '$(@D)'"
+	@content="$$(<$<)"; print -r -- "$${(e)content}" >| "$@"
 
 # Homebrew #####################################################################
 

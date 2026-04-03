@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>${RAM_DISK_LAUNCHD}</string>
+
+    <key>ProgramArguments</key>
+    <array>
+        <string>${XDG_BIN_HOME}/${RAM_DISK_SCRIPT}</string>
+        <string>${RAM_DISK_NAME}</string>
+        <string>${RAM_DISK_SIZE}</string>
+        <string>${RAM_DISK_UNIT}</string>
+    </array>
+
+    <key>RunAtLoad</key>
+    <true/>
+</dict>
+</plist>

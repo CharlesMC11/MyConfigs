@@ -1,4 +1,4 @@
-#!/usr/bin/env -S zsh -f
+#!/bin/zsh -f
 
 load_ramdisk() {
   local -r DISK_NAME=${1:-Workbench}
@@ -13,12 +13,13 @@ load_ramdisk() {
 
   case ${(L)SIZE_UNIT} in
     gib|gb) integer -r shift_amount=30;;
-    mig|mb) integer -r shift_amount=20;;
+    mib|mb) integer -r shift_amount=20;;
     *)      print -u 2 -- "$0: Invalid unit"; exit 64  # BSD EX_USAGE
   esac
 
   integer -r block_size=512
-  integer -r sector_count=$(( DISK_SIZE * ( 1 << shift_amount ) / block_size ))
+  integer sector_count
+  (( sector_count = DISK_SIZE * ( 1 << shift_amount ) / block_size ))
 
   local -r device_path=${$(hdiutil attach -nomount ram://$sector_count)[(w)1]}
   if [[ -z $device_path ]]; then
