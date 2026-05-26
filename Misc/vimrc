@@ -1,10 +1,16 @@
 syntax on
 
 if has ("autocmd")
-    filetype indent plugin on
+  filetype indent plugin on
 endif
-
-set autoindent
 
 set number
 set relativenumber
+
+set mouse=a
+
+set autoindent
+set expandtab
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
