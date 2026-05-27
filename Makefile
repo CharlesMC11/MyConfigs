@@ -42,7 +42,7 @@ hardlink				:= install -v -l h
 symlink					:= install -v -l as
 
 TARGETS					:= macos homebrew zsh bash starship git vim vscode \
-							exiftool adobe capture_one maya
+							uv rustup exiftool adobe capture_one maya
 
 .PHONY: all $(TARGETS) clean
 
@@ -57,8 +57,8 @@ $(XDG_STATE_HOME)/.macos_stamp: ./macOS/macos.zsh | $(XDG_STATE_HOME)/.dirstamp
 	touch "$@"
 
 /Volumes/Workbench: ./macOS/load_ramdisk.zsh
-	"./$<" $(RAM_DISK_NAME) $(RAM_DISK_SIZE)
-	$(symlink) "$(abspath $<)" $(XDG_BIN_HOME)/load_ramdisk
+	@"./$<" $(RAM_DISK_NAME) $(RAM_DISK_SIZE)
+	@$(symlink) "$(abspath $<)" $(XDG_BIN_HOME)/load_ramdisk
 
 workbenchd: ./macOS/$(RAM_DISK_SCRIPT).zsh $(RAM_DISK_PLIST_PATH)
 	@$(symlink) "$<" "$(XDG_BIN_HOME)/$(RAM_DISK_SCRIPT)"
@@ -136,6 +136,12 @@ $(XDG_STATE_HOME)/.vscode_stamp: Brewfile
 	@touch "$@"
 
 # CLI Tools ####################################################################
+
+uv:
+	curl -LsSf https://astral.sh/uv/install.sh | sh
+
+rustup:
+	curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
 exiftool: $(XDG_DATA_HOME)/ExifTool
 
