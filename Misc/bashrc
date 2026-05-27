@@ -1,1 +1,3 @@
 HISTFILE=~/.config/.bash_history
+
+source ~/.cargo/env
