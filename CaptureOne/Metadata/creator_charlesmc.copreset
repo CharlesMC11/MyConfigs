@@ -5,11 +5,8 @@
 	<E K="Contact_Creator" V="Charles Mesa Cayobit" />
 	<E K="Contact_Emails" V="charlesmesacayobit@gmail.com" />
 	<E K="Contact_State_Province" V="California" />
-	<E K="Contact_Websites" V="charlesmc-tech.art" />
 	<E K="Name" V="creator_charlesmc" />
-	<E K="Status_CopyrightNotice" V="© Charles Mesa Cayobit" />
-	<E K="Status_Provider" V="Charles Mesa Cayobit" />
-	<E K="Status_Source" V="Charles Mesa Cayobit" />
+	<E K="Status_CopyrightNotice" V="© Charles Mesa Cayobit. All rights reserved." />
 	<E K="StyleSource" V="Metadata" />
 	<E K="UUID" V="6885F1BD-21E3-4824-B712-1AA87B9F675F" />
 </SL>
