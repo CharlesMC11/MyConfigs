@@ -27,10 +27,12 @@ load_ramdisk() {
     return 1
   fi
 
-  if newfs_apfs -v "$DISK_NAME" $device_path; then
+  if newfs_apfs -v "$DISK_NAME" "$device_path"; then
     diskutil mount "$DISK_NAME"
     touch "${DISK_PATH}/.metadata_never_index"
     mdutil -i off "$DISK_PATH"
+
+    make --directory ~MyProgramming/bin/process_screenshots/sst
   else
     print -u 2 -- "$0: Formatting failed"
     hdiutil detach "$device_path"
