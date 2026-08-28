@@ -42,16 +42,22 @@ dock showhidden -bool true
 
 alias finder='dw com.apple.finder'
 dw -g AppleShowAllExtensions -bool true
-dw -g com.apple.springing.delay -float 1
-dw -g NSToolbarTitleViewRolloverDelay -float 0
+dw -g NSToolbarTitleViewRolloverDelay -int 0
 dw -g NSWindowResizeTime -float 0.001
+dw -g com.apple.springing.delay -int 1
 
 dw -g NSNavPanelExpandedStateForSaveMode -bool true
 dw -g NSNavPanelExpandedStateForSaveMode2 -bool true
 dw -g PMPrintingExpandedStateForPrint -bool true
 dw -g PMPrintingExpandedStateForPrint2 -bool true
 
+finder ShowExternalHardDrivesOnDesktop -bool true
+finder ShowHardDrivesOnDesktop -bool false
+finder ShowRemovableMediaOnDesktop -bool true
+
 finder _FXSortFoldersFirstOnDesktop -bool true
+finder _FXSortFoldersFirst -bool false
+
 finder AppleShowAllFiles -bool false
 finder FXRemoveOldTrashItems -bool true
 finder ShowPathbar -bool true
@@ -63,7 +69,7 @@ finder ShowSidebar -bool true
 # finder 'FX_ArrangeBy' -string 'Kind'
 # finder 'FXArrangeGroupViewBy' -string 'Name'
 
-# finder '_FXSortFoldersFirst' -bool true
+finder FXDefaultSearchScope -string SCcf
 
 dw com.apple.desktopservices DSDontWriteNetworkStores -bool true
 dw com.apple.desktopservices DSDontWriteUSBStores -bool true
@@ -100,4 +106,4 @@ sudo sysctl -w net.inet.tcp.recvspace=262144
 dw com.apple.LaunchServices LSQuarantine -bool false
 dw com.apple.CrashReporter DialogType -string 'developer'
 
-killall Dock Finder SystemUIServer
+killall Dock Finder SystemUIServer cfprefsd
