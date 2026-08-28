@@ -16,14 +16,14 @@ if [[ -d ~MyFiles ]]; then
   done
   unset directories
 
+  hash -d SSeries=~MyFiles/Pokemon_S-Series
+  hash -d ShadowChronicles=~MyFiles/Shadow_Chronicles/i21
   hash -d MyJournals=/Volumes/Journals
   hash -d MyShasta=~MyJournals/__domingo.shasta__
 
   for directory in Art Photos Screenshots; do
     hash -d My${directory}=~MyPictures/${directory}
   done
-
-  hash -d DeAnza=~MyFiles/'De Anza College'
 
   pythonpath=(~MyProgramming/bin ~MyProgramming "${(@)pythonpath}")
   declare -Ua files
